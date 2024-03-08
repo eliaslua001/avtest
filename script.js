@@ -158,7 +158,7 @@ function loadModels() {
 
   celestialBodies.forEach(body => {
     loader.load(
-      `assets/${body.id}.obj`, // Replace with actual path to model
+      `assets/${body.id}.glb`, // Replace with actual path to model
       function(object) {
         // Adjust position and scale of the loaded model
         object.traverse(function(child) {
