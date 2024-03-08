@@ -5,13 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstraVerse: Scrollable Solar System</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <!-- Include Three.js core library -->
-    <script src="lib/three.js-dev/three.module.js"></script>
-    <!-- Include OrbitControls utility -->
-    <script src="lib/three.js-dev/OrbitControls.js"></script>
-    <!-- Include PointerLockControls utility (optional) -->
-    <script src="lib/three.js-dev/PointerLockControls.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css" />
   </head>
 
   <body>
@@ -28,9 +22,10 @@
       <div class="layer layer-5"></div>
       <div class="layer layer-6"></div>
     </div>
-    <!-- Add a container for the 3D scene -->
-    <div id="three-container"></div>
-    <div class="fact-container">
+    <div class="container" style="display: none;">
+      <!-- Celestial bodies will be added here by JavaScript -->
+    </div>
+    <div class="fact-container" style="display: none;">
       <div class="close-button">&#10006;</div>
       <div class="arrow left-arrow">&#10094;</div>
       <p class="name"></p>
@@ -43,13 +38,13 @@
     <div class="distance-meter">Distance: <span id="distance">0</span> km</div>
     <!-- Astronaut or spaceship element -->
     <div class="astronaut" id="astronaut"></div>
-    <div class="fact-container astronaut-fact">
+    <div class="fact-container astronaut-fact" style="display: none;">
       <div class="fact-wrapper">
         <p class="fact"></p>
         <div class="close-icon">×</div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js"></script>	
   </body>
-
+  
 </html>
