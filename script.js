@@ -13,7 +13,7 @@ let debounceTimer;
 const celestialBodies = [{
     id: 'sun',
     color: 'yellow',
-    diameter: 1392700, // 1.3927 million kilometres
+    diameter: 1392700, // 1.3927 million kilometers
     distance: 0, // Starting point for this model
     name: 'Sun',
     facts: [
@@ -24,7 +24,7 @@ const celestialBodies = [{
   {
     id: 'mercury',
     color: 'gray',
-    diameter: 4879.4, // 4,879.4 kilometres
+    diameter: 4879.4, // 4,879.4 kilometers
     distance: 0.4, // AU Distance
     name: 'Mercury',
     facts: [
@@ -46,7 +46,7 @@ const celestialBodies = [{
   {
     id: 'earth',
     color: 'blue',
-    diameter: 12742, // 12,742 kilometres
+    diameter: 12742, // 12,742 kilometers
     distance: 1, // AU Distance
     name: 'Earth',
     facts: [
@@ -58,7 +58,7 @@ const celestialBodies = [{
     id: 'moon',
     color: 'gray',
     diameter: 3475, // 3,475 kilometers
-    distance: 1.00257, // 1 AU + 384,400 kilometres (0.00257 AU)
+    distance: 1.00257, // 1 AU + 384,400 kilometers (0.00257 AU)
     name: 'Moon',
     facts: [
       'The Moon is Earth\'s only natural satellite.',
@@ -79,7 +79,7 @@ const celestialBodies = [{
   {
     id: 'jupiter',
     color: 'tan',
-    diameter: 142800, // 142,800 kilometres
+    diameter: 142800, // 142,800 kilometers
     distance: 5.20, // AU Distance
     name: 'Jupiter',
     facts: [
@@ -90,7 +90,7 @@ const celestialBodies = [{
   {
     id: 'saturn',
     color: 'gold',
-    diameter: 120536, // 120,536 kilometres
+    diameter: 120536, // 120,536 kilometers
     distance: 9.5, // AU Distance
     name: 'Saturn',
     facts: [
@@ -101,7 +101,7 @@ const celestialBodies = [{
   {
     id: 'uranus',
     color: 'lightblue',
-    diameter: 50724, // 50,724 kilometres
+    diameter: 50724, // 50,724 kilometers
     distance: 19.8, // AU Distance
     name: 'Uranus',
     facts: [
@@ -152,12 +152,71 @@ document.addEventListener('DOMContentLoaded', function() {
   generateAstronaut(); // Generate astronaut
 });
 
+// Function to load 3D models
+function loadModels() {
+  const loader = new THREE.OBJLoader(); // Assuming you're using OBJ format
 
+  celestialBodies.forEach(body => {
+    loader.load(
+      `assets/${body.id}.obj`, // Replace with actual path to model
+      function(object) {
+        // Adjust position and scale of the loaded model
+        object.traverse(function(child) {
+          if (child instanceof THREE.Mesh) {
+            child.position.set(body.distance * scaleRatio, 0, 0); // Set position based on distance
+            child.scale.set(body.diameter / scaleRatio, body.diameter / scaleRatio, body.diameter / scaleRatio); // Set scale based on diameter
+          }
+        });
+        scene.add(object); // Add model to scene
+      },
+      function(xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      },
+      function(error) {
+        console.error('An error occurred', error);
+      }
+    );
+  });
+}
+
+// Call loadModels function to load 3D models
+loadModels();
 
 // Function to set the glow effect for each celestial body
 function setGlowColor(element, color) {
   element.style.boxShadow = `0 0 20px 10px ${color}`;
 }
+
+// Dynamically create celestial bodies
+celestialBodies.forEach(body => {
+  const element = document.createElement('div');
+  element.id = body.id;
+  element.className = 'celestial-body';
+  element.dataset.name = body.name; // Add dataset for name
+  element.style.backgroundColor = body.color;
+
+  // Set glow color to match the body's color
+  setGlowColor(element, body.color);
+
+  // Calculate size based on actual diameter and scale ratio
+  const size = body.diameter / scaleRatio;
+
+  // Calculate distance based on scale ratio
+  const distance = (body.distance * astronomicalUnit) / scaleRatio;
+
+  element.style.width = size + 'px';
+  element.style.height = size + 'px';
+  element.style.top = distance + 'px';
+  element.style.left = 'calc(50% - ' + (size / 2) + 'px)'; // Adjust the left position to center the body
+  document.querySelector('.container').appendChild(element);
+
+  const nameElement = document.createElement('p');
+  nameElement.className = 'name';
+  nameElement.textContent = body.name;
+  element.appendChild(nameElement);
+
+  // Rest of your existing code for creating celestial bodies...
+});
 
 const factContainer = document.querySelector('.fact-container');
 const factWrapper = factContainer.querySelector('.fact-wrapper');
@@ -180,7 +239,6 @@ const astronautFactContainer = document.querySelector('.astronaut-fact');
 closeIcon.addEventListener('click', function() {
   astronautFactContainer.style.display = 'none';
 });
-
 
 let currentBodyIndex = 0;
 let currentFactIndex = 0;
@@ -211,36 +269,6 @@ rightArrow.addEventListener('click', function() {
   showFact(currentFactIndex); // Show the updated fact
   event.stopPropagation();
 });
-
-// Function to load 3D models
-function loadModels() {
-  const loader = new THREE.OBJLoader(); // Assuming you're using OBJ format
-
-  celestialBodies.forEach(body => {
-    loader.load(
-      `assets/${body.id}.glb`, // Replace with actual path to model
-      function(object) {
-        // Adjust position and scale of the loaded model
-        object.traverse(function(child) {
-          if (child instanceof THREE.Mesh) {
-            child.position.set(body.distance * scaleRatio, 0, 0); // Set position based on distance
-            child.scale.set(body.diameter / scaleRatio, body.diameter / scaleRatio, body.diameter / scaleRatio); // Set scale based on diameter
-          }
-        });
-        scene.add(object); // Add model to scene
-      },
-      function(xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-      },
-      function(error) {
-        console.error('An error occurred', error);
-      }
-    );
-  });
-}
-
-// Call loadModels function to load 3D models
-loadModels();
 
 function parseNumeriqueSpace(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
