@@ -10,40 +10,117 @@ const scaleRatio = 300; // Each unit represents 300 times the corresponding dist
 
 let debounceTimer;
 
-// Initialize Three.js scene
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById('three-container').appendChild(renderer.domElement);
-
-// Load 3D models
-const loader = new THREE.OBJLoader();
-loader.load(
-  'assets/Sun_1_1391000.glb',
-  function(object) {
-    // Adjust position and scale of the loaded model
-    object.position.set(x, y, z);
-    object.scale.set(scaleX, scaleY, scaleZ);
-    scene.add(object);
+const celestialBodies = [{
+    id: 'sun',
+    color: 'yellow',
+    diameter: 1392700, // 1.3927 million kilometres
+    distance: 0, // Starting point for this model
+    name: 'Sun',
+    facts: [
+      'The Sun is a star at the center of the Solar System.',
+      'It is composed of hot plasma interwoven with magnetic fields.',
+    ]
   },
-  function(xhr) {
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+  {
+    id: 'mercury',
+    color: 'gray',
+    diameter: 4879.4, // 4,879.4 kilometres
+    distance: 0.4, // AU Distance
+    name: 'Mercury',
+    facts: [
+      'Mercury is the smallest planet in the Solar System and the closest to the Sun.',
+      'It has a very thin atmosphere composed mainly of oxygen, sodium, hydrogen, helium, and potassium.'
+    ]
   },
-  function(error) {
-    console.error('An error occurred', error);
+  {
+    id: 'venus',
+    color: 'orange',
+    diameter: 12104, // 12,104 kilometers
+    distance: 0.72, // AU Distance
+    name: 'Venus',
+    facts: [
+      'Venus is often called the "Morning Star" or the "Evening Star".',
+      'It has a thick atmosphere mainly composed of carbon dioxide with clouds of sulfuric acid.'
+    ]
+  },
+  {
+    id: 'earth',
+    color: 'blue',
+    diameter: 12742, // 12,742 kilometres
+    distance: 1, // AU Distance
+    name: 'Earth',
+    facts: [
+      'Earth is the third planet from the Sun and the only astronomical object known to harbor life.',
+      'It has one natural satellite, the Moon, which plays a significant role in stabilizing its axial tilt.'
+    ]
+  },
+  {
+    id: 'moon',
+    color: 'gray',
+    diameter: 3475, // 3,475 kilometers
+    distance: 1.00257, // 1 AU + 384,400 kilometres (0.00257 AU)
+    name: 'Moon',
+    facts: [
+      'The Moon is Earth\'s only natural satellite.',
+      'It is tidally locked to Earth, meaning the same side always faces Earth.'
+    ]
+  },
+  {
+    id: 'mars',
+    color: 'red',
+    diameter: 6779, // 6,779 kilometers
+    distance: 1.5, // AU Distance
+    name: 'Mars',
+    facts: [
+      'Mars is known as the "Red Planet" due to its reddish appearance.',
+      'It has the tallest volcano and the deepest canyon in the Solar System, Olympus Mons and Valles Marineris respectively.'
+    ]
+  },
+  {
+    id: 'jupiter',
+    color: 'tan',
+    diameter: 142800, // 142,800 kilometres
+    distance: 5.20, // AU Distance
+    name: 'Jupiter',
+    facts: [
+      'Jupiter is the largest planet in the Solar System and has more than 75 moons.',
+      'Its iconic Great Red Spot is a massive storm that has been raging for at least 400 years.'
+    ]
+  },
+  {
+    id: 'saturn',
+    color: 'gold',
+    diameter: 120536, // 120,536 kilometres
+    distance: 9.5, // AU Distance
+    name: 'Saturn',
+    facts: [
+      'Saturn is known for its prominent ring system, made up of ice particles and dust.',
+      'It has the second-largest moon in the Solar System, Titan, which has a dense atmosphere and surface lakes of liquid methane.'
+    ]
+  },
+  {
+    id: 'uranus',
+    color: 'lightblue',
+    diameter: 50724, // 50,724 kilometres
+    distance: 19.8, // AU Distance
+    name: 'Uranus',
+    facts: [
+      'Uranus is unique among the planets because it rotates on its side.',
+      'It was the first planet discovered with a telescope, by William Herschel in 1781.'
+    ]
+  },
+  {
+    id: 'neptune',
+    color: 'blue',
+    diameter: 49528, // 49,528 kilometers
+    distance: 30, // AU Distance
+    name: 'Neptune',
+    facts: [
+      'Neptune is the farthest planet from the Sun and is often referred to as an "Ice Giant".',
+      'It was the first planet to be discovered through mathematical calculations, rather than direct observation.'
+    ]
   }
-);
-
-// Set camera position
-camera.position.z = 5;
-
-// Render loop
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
-}
-animate();
+];
 
 
 function generateAstronaut() {
@@ -135,40 +212,35 @@ rightArrow.addEventListener('click', function() {
   event.stopPropagation();
 });
 
-celestialBodies.forEach(body => {
-  const element = document.createElement('div');
-  element.id = body.id;
-  element.className = 'celestial-body';
-  element.dataset.name = body.name; // Add dataset for name
-  element.style.backgroundColor = body.color;
+// Function to load 3D models
+function loadModels() {
+  const loader = new THREE.OBJLoader(); // Assuming you're using OBJ format
 
-  // Set glow color to match the body's color
-  setGlowColor(element, body.color);
-
-  // Calculate size based on actual diameter and scale ratio
-  const size = body.diameter / scaleRatio;
-
-  // Calculate distance based on scale ratio
-  const distance = (body.distance * astronomicalUnit) / scaleRatio;
-
-  element.style.width = size + 'px';
-  element.style.height = size + 'px';
-  element.style.top = distance + 'px';
-  element.style.left = 'calc(50% - ' + (size / 2) + 'px)'; // Adjust the left position to center the body
-  document.querySelector('.container').appendChild(element);
-
-  const nameElement = document.createElement('p');
-  nameElement.className = 'name';
-  nameElement.textContent = body.name;
-  element.appendChild(nameElement);
-
-  element.addEventListener('click', function() {
-    currentBodyIndex = celestialBodies.findIndex(item => item.id === body.id); // Set current body index
-    showFact(0); // Show the first fact when clicked
-    factContainer.style.display = 'block'; // Show the fact container
+  celestialBodies.forEach(body => {
+    loader.load(
+      `assets/${body.id}.glb`, // Replace with actual path to model
+      function(object) {
+        // Adjust position and scale of the loaded model
+        object.traverse(function(child) {
+          if (child instanceof THREE.Mesh) {
+            child.position.set(body.distance * scaleRatio, 0, 0); // Set position based on distance
+            child.scale.set(body.diameter / scaleRatio, body.diameter / scaleRatio, body.diameter / scaleRatio); // Set scale based on diameter
+          }
+        });
+        scene.add(object); // Add model to scene
+      },
+      function(xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      },
+      function(error) {
+        console.error('An error occurred', error);
+      }
+    );
   });
+}
 
-});
+// Call loadModels function to load 3D models
+loadModels();
 
 function parseNumeriqueSpace(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
