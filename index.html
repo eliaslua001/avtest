@@ -15,10 +15,16 @@
   <div class="landing-content" id="landing-content">
     <h1>Welcome to AstraVerse</h1>
     <p>Explore our scrollable solar system</p>
-    <button onclick="startExploring()" class="button">
-      <span class="text">Start Exploring</span>
-      <span class="shimmer"></span>
-    </button>
+    <div class="wrapper">
+      <div class="onboard">
+        <input type="text" value="" name="spaceshipName" id="spaceshipName"
+          placeholder="Enter your designation ..."><br><br>
+        <button onclick="startExploring()" class="button">
+          <span class="text">Start Exploring</span>
+          <span class="shimmer"></span>
+        </button>
+      </div>
+    </div>
   </div>
   <div id="root">
     <div class="layer layer-1"></div>
@@ -59,11 +65,18 @@
       camera-orbit="-54.64deg 69.19deg 60m" field-of-view="26.26deg" camera-controls disable-tap
       style="width: 300px; height: 300px;"></model-viewer>
   </div>
+  <div class="spaceship-message" style="display: none;">
+    <p class="missionControl"></p>
+    <p class="messageContent"></p>
+    <button class="closeButtonMC"></button>
+  </div>
   <div class="fact-container astronaut-fact" style="display: none;">
     <div class="fact-wrapper">
       <p class="fact"></p>
       <div class="close-icon">&#10006;</div>
     </div>
+  </div>
+  </div>
   </div>
   <script src="script.js"></script>
   <script src="starfield.js"></script>
