@@ -123,7 +123,8 @@ const celestialBodies = [{
   poster: 'assets/saturn.png',
   alt: 'Saturn',
   color: 'gold',
-  diameter: 120536, // 120,536 kilometres, 1341.7866 px including rings
+  width: 402536, // 120,536 kilometres, 402,536 kilometres including rings
+  diameter: 120536,
   distance: 9.5, // AU Distance
   name: 'Saturn',
   facts: [
@@ -325,15 +326,18 @@ function showFact(index) {
   modelViewer.setAttribute('alt', body.alt);
   modelViewer.setAttribute('auto-rotate', '');
   modelViewer.setAttribute('camera-controls', '');
-  modelViewer.style.width = '100%';
   modelViewer.style.height = '300px';
-  modelViewer.style.marginTop = '10px'; // Adjust margin as needed
-  factContainer.appendChild(modelViewer);
-  // Set the text content of factWrapper to the fact
+  modelViewer.style.width = '100%';
+  modelViewer.style.marginTop = '10px';
+
+  if (body.id === 'saturn') {
+    modelViewer.setAttribute('camera-orbit', '0deg 75deg 3098m');
+  }
+
+  factContainer.appendChild(modelViewer); // Set the text content of factWrapper to the fact
   factWrapper.textContent = facts[index];
   currentFactIndex = index;
 }
-
 closeButton.addEventListener('click', function () {
   factContainer.style.display = 'none';
   // Remove existing model-viewer if any when closing the fact container
@@ -366,16 +370,23 @@ celestialBodies.forEach(body => {
   modelViewer.setAttribute('auto-rotate', ''); // Add auto-rotate attribute if desired
   modelViewer.setAttribute('camera-controls', ''); // Add camera controls attribute if desired
 
-  // Calculate size based on actual diameter and scale ratio
-  const size = body.diameter / scaleRatio
+  if (body.id === 'saturn') {
+    // Calculate size and shape for Saturn
+    const size = body.width / scaleRatio
+    modelViewer.style.width = body.width / scaleRatio + 'px'; // Set the desired width for the model
+    modelViewer.style.height = body.diameter / scaleRatio + 'px';
+    modelViewer.style.left = 'calc(50% - ' + (size / 2) + 'px)'; // Adjust the left position to center the body
+  } else {
+    // Calculate size and shape for other celestial bodies (circles)
+    const size = body.diameter / scaleRatio
+    modelViewer.style.width = size + 'px'; // Set the desired width for the model
+    modelViewer.style.height = size + 'px'; // Set the desired height for the model
+    modelViewer.style.left = 'calc(50% - ' + (size / 2) + 'px)'; // Adjust the left position to center the body
+  }
 
   // Calculate distance based on scale ratio
   const distance = (body.distance * astronomicalUnit) / scaleRatio;
-
-  modelViewer.style.width = size + 'px'; // Set the desired width for the model
-  modelViewer.style.height = size + 'px'; // Set the desired height for the model
   modelViewer.style.top = distance + 'px'; // Set the distance from the top
-  modelViewer.style.left = 'calc(50% - ' + (size / 2) + 'px)'; // Adjust the left position to center the body
   document.querySelector('.container').appendChild(modelViewer);
 
   // Create and append text element to display the name of the celestial body

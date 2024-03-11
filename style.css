@@ -91,6 +91,7 @@
   height: 100%;
   background-color: #161616f7;
   z-index: 9998;
+  overflow-y: auto;
 }
 
 .message-log-content {
@@ -449,7 +450,7 @@ canvas {
 }
 
 .model-viewer {
-  max-width: 300px;
+  max-width: 500px;
   /* Set a maximum width to prevent models from exceeding the container */
   max-height: 300px;
   /* Set a maximum height to prevent models from exceeding the container */
