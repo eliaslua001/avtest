@@ -1,9 +1,15 @@
+let userInputName = '';
+
 function startExploring() {
   document.getElementById('root').style.display = 'none'; // Hide the landing page
   document.getElementById('landing-content').style.display = 'none'; // Hide the landing content
   document.querySelector('.container').style.display = 'block'; // Show the celestial bodies
   document.querySelector('.astronaut').style.display = 'block'; // Show the astronaut
-  document.querySelector('.spaceship').style.display = 'block'; // Show the astronaut
+  document.querySelector('.spaceship').style.display = 'block'; // Show the spaceship
+  var spaceshipName = document.getElementById('spaceshipName').value;
+  userInputName = spaceshipName.trim(); // Store the user input name
+  spaceshipData.name = userInputName ? userInputName : 'Odyssey';
+  updateCloseButtonMCText();
 }
 const astronomicalUnit = 149597871; // 149,597,871 kilometers (1 AU)
 const scaleRatio = 300; // Each unit represents 300 times the corresponding distance in reality
@@ -153,6 +159,57 @@ const celestialBodies = [{
 }
 ];
 
+const spaceshipData = {
+  name: '',
+  messages: [
+    "Remember to buckle up! Safety first as we embark on our journey.",
+    "Keep an eye on the distance meter to track our progress.",
+    "Hover over celestial bodies to learn fascinating facts about them.",
+    // Add more messages here
+  ]
+};
+
+function generateSpaceship() {
+  const spaceship = document.getElementById('spaceship');
+
+  spaceship.addEventListener('click', function () {
+    showRandomSpaceshipMessage(); // Display random message
+  });
+}
+
+function showRandomSpaceshipMessage() {
+  const spaceshipMessages = spaceshipData.messages;
+
+  const randomSpaceshipMessage = spaceshipMessages[Math.floor(Math.random() * spaceshipMessages.length)];
+  const spaceshipMessageContainer = document.querySelector('.spaceship-message');
+  const missionControlElement = spaceshipMessageContainer.querySelector('.missionControl');
+  const messageContentElement = spaceshipMessageContainer.querySelector('.messageContent');
+  const userInput = document.getElementById('spaceshipName').value.trim();
+  spaceshipData.name = userInput ? userInput : 'Odyssey';
+
+  const missionControl = `Houston, ${spaceshipData.name}.`;
+  missionControlElement.textContent = missionControl;
+  missionControlElement.classList.add('missionControl'); // Add the class for styling
+  messageContentElement.textContent = randomSpaceshipMessage;
+  spaceshipMessageContainer.style.display = 'block';
+
+  updateCloseButtonMCText();
+}
+
+const closeButtonMC = document.querySelector('.closeButtonMC');
+updateCloseButtonMCText(); // Call the function to set the initial text
+
+function updateCloseButtonMCText() {
+  const defaultName = 'Odyssey'; // Default name if the user didn't input anything
+  const buttonText = spaceshipData.name ? `${spaceshipData.name}, Houston. Roger.` : `${defaultName}, Houston. Roger.`;
+  closeButtonMC.textContent = buttonText;
+}
+
+closeButtonMC.addEventListener('click', function () {
+  const spaceshipMessageContainer = document.querySelector('.spaceship-message');
+  spaceshipMessageContainer.style.display = 'none';
+});
+
 const astronautData = {
   src: 'assets/astronaut.glb',
   poster: 'assets/astronaut.png',
@@ -188,6 +245,9 @@ function showRandomAstronautFact() {
 
 document.addEventListener('DOMContentLoaded', function () {
   generateAstronaut(); // Generate astronaut
+  generateSpaceship(); // Generate spaceship
+  const input = document.getElementById('spaceshipName'); // Retrieve the input element
+  input.setAttribute('size', input.getAttribute('placeholder').length);
 });
 
 const factContainer = document.querySelector('.fact-container');
