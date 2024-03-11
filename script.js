@@ -6,10 +6,12 @@ function startExploring() {
   document.querySelector('.container').style.display = 'block'; // Show the celestial bodies
   document.querySelector('.astronaut').style.display = 'block'; // Show the astronaut
   document.querySelector('.spaceship').style.display = 'block'; // Show the spaceship
+  document.querySelector('.message-log-button').style.display = 'block'; // Show the spaceship
   var spaceshipName = document.getElementById('spaceshipName').value;
   userInputName = spaceshipName.trim(); // Store the user input name
   spaceshipData.name = userInputName ? userInputName : 'Odyssey';
   updateCloseButtonMCText();
+  document.querySelector('.message-log-overlay').style.display = 'block';
 }
 const astronomicalUnit = 149597871; // 149,597,871 kilometers (1 AU)
 const scaleRatio = 300; // Each unit represents 300 times the corresponding distance in reality
@@ -248,6 +250,25 @@ document.addEventListener('DOMContentLoaded', function () {
   generateSpaceship(); // Generate spaceship
   const input = document.getElementById('spaceshipName'); // Retrieve the input element
   input.setAttribute('size', input.getAttribute('placeholder').length);
+  const messageLogButton = document.getElementById('message-log-button');
+  const messageLogOverlay = document.getElementById('message-log-overlay');
+
+  // Show message log overlay when user clicks start exploring
+  function showOverlay() {
+    messageLogOverlay.style.display = 'block';
+  }
+
+  // Hide message log overlay when user clicks close button
+  function hideOverlay() {
+    messageLogOverlay.style.display = 'none';
+  }
+
+  // Add event listener to message log button
+  messageLogButton.addEventListener('click', showOverlay);
+
+  // Add event listener to close button
+  const closeButton = document.querySelector('.close-messageLog');
+  closeButton.addEventListener('click', hideOverlay);
 });
 
 const factContainer = document.querySelector('.fact-container');

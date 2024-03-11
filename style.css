@@ -63,6 +63,88 @@
   }
 }
 
+.message-log-button {
+  position: fixed;
+  color: #ffffff;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: grab;
+  z-index: 9999;
+}
+
+.message-log-button:hover {
+  color: #666666;
+  text-shadow: 3px 3px 30px #dddbcd;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.message-log-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #161616f7;
+  z-index: 9998;
+}
+
+.message-log-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #cba7d454;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+  overflow: auto;
+}
+
+.close-messageLog {
+  position: absolute;
+  top: 10px;
+  right: 13px;
+  cursor: pointer;
+}
+
+.close-messageLog:hover {
+  color: #666666;
+  text-shadow: 3px 3px 30px #dddbcd;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.footnote {
+  font-style: italic;
+  font-size: smaller;
+  margin-top: 10px;
+  text-align: justify;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+ul {
+  text-align: left;
+  padding-left: 20px;
+}
+
+li {
+  padding-bottom: 20px;
+  display: inline-block;
+}
+
+.material-icons {
+  color: #efeff3e5;
+  vertical-align: middle;
+}
+
 #spaceshipName {
   color: #ffffffe3;
   display: inline-block;
@@ -80,7 +162,6 @@
   background-color: #ffffff4d;
 }
 
-/* after button is clicked */
 #spaceshipName.active {
   width: 200px;
   color: #efaa9d;
@@ -99,7 +180,6 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-
 
 button {
   background-color: rgba(255, 255, 255, 0.3);
