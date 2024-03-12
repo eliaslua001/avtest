@@ -1,7 +1,7 @@
 .landing-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 46%;
+  left: 55%;
   width: fit-content;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -158,6 +158,34 @@ li {
 .material-icons {
   color: #efeff3e5;
   vertical-align: middle;
+}
+
+#userName {
+  color: #ffffffe3;
+  display: inline-block;
+  text-align: center;
+  background-color: #929292d1;
+  padding: .9em 1.8em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 4px;
+  transition: all .1s linear;
+}
+
+#userName:hover {
+  background-color: #ffffff4d;
+}
+
+#userName.active {
+  width: 200px;
+  color: #efaa9d;
+  text-align: left;
+  cursor: inherit;
+}
+
+#userName::placeholder {
+  color: #ccc;
 }
 
 #spaceshipName {
@@ -478,7 +506,6 @@ canvas {
   width: auto;
   height: auto;
   position: relative;
-  background-color: transparent;
   border-radius: 10px;
   /* Add border radius to round the corners */
   flex-direction: column;
@@ -554,7 +581,7 @@ canvas {
   top: 50%;
   width: 100%;
   height: 1px;
-  background-color: red;
+  background-color: #ff000065;
   z-index: 999;
 }
 
@@ -574,7 +601,7 @@ canvas {
   position: fixed;
   width: auto;
   max-width: 200px;
-  padding: 10px;
+  padding: 5px;
   color: gray;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
@@ -599,8 +626,8 @@ canvas {
 
 .close-icon {
   position: absolute;
-  top: -8px;
-  right: -2px;
+  top: -2px;
+  right: 5px;
   cursor: pointer;
   font-size: 20px;
   color: #999;
@@ -684,4 +711,63 @@ canvas {
   background-color: #b98fe7bf;
   border: 1px solid #cba7d454;
   color: #fff;
+}
+
+.welco {
+  position: fixed;
+  width: auto;
+  max-width: 360px;
+  padding: 5px;
+  color: #3c3434;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  left: 120px;
+  top: calc(50% - 330px);
+  /* Position slightly above the center */
+}
+
+.welco::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent rgba(255, 255, 255, 0.9) transparent transparent;
+  /* Arrow color */
+  transform: rotate(-45deg);
+  /* Rotate the arrow */
+}
+
+.welco-wrapper {
+  padding: 15px;
+  /* Add padding on all sides */
+  width: auto;
+  height: auto;
+  position: relative;
+  border-radius: 10px;
+  /* Add border radius to round the corners */
+  flex-direction: column;
+  font-size: 15px;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.close-iconWM {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #999;
+}
+
+.close-iconWM:hover {
+  color: #808080;
+  text-shadow: 3px 3px 30px #dddbcd;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }

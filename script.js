@@ -1,4 +1,6 @@
 let userInputName = '';
+let userInputShipName = '';
+let commanderName = '';
 
 function startExploring() {
   document.getElementById('root').style.display = 'none'; // Hide the landing page
@@ -9,10 +11,15 @@ function startExploring() {
   document.querySelector('.spaceship').style.display = 'block'; // Show the spaceship
   document.querySelector('.message-log-button').style.display = 'block'; // Show the spaceship
   var spaceshipName = document.getElementById('spaceshipName').value;
-  userInputName = spaceshipName.trim(); // Store the user input name
-  spaceshipData.name = userInputName ? userInputName : 'Odyssey';
+  var userName = document.getElementById('userName').value;
+  userInputName = userName.trim(); // Store the user input name
+  userInputShipName = spaceshipName.trim(); // Store the user input name
+  userDisplayName = userInputName ? userInputName : 'Reese';
+  spaceshipData.name = userInputShipName ? userInputShipName : 'Odyssey';
   updateCloseButtonMCText();
   document.querySelector('.message-log-overlay').style.display = 'block';
+  document.querySelector('.welco').style.display = 'block';
+  displayWelcomeMessage();
 }
 const astronomicalUnit = 149597871; // 149,597,871 kilometers (1 AU)
 const scaleRatio = 300; // Each unit represents 300 times the corresponding distance in reality
@@ -178,6 +185,56 @@ function generateSpaceship() {
 
   spaceship.addEventListener('click', function () {
     showRandomSpaceshipMessage(); // Display random message
+  });
+}
+
+function displayWelcomeMessage() {
+  // Array of commander names
+  const commanderNames = [
+    "Sirius",
+    "Elara",
+    "Orion",
+    "Celeste",
+    "Atlas",
+    "Luna",
+    "Altair",
+    "Andromeda"
+  ];
+
+  // Select the commander name based on the index
+  commanderName = commanderNames[Math.floor(Math.random() * commanderNames.length)];
+
+  // Change background color based on the generated name
+  const welcoWrapper = document.querySelector('.welco-wrapper');
+  switch (commanderName) {
+    case 'Sirius':
+    case 'Orion':
+    case 'Atlas':
+    case 'Altair':
+      welcoWrapper.style.backgroundColor = '#8fbfe7bf';
+      break;
+    case 'Elara':
+    case 'Celeste':
+    case 'Luna':
+    case 'Andromeda':
+      welcoWrapper.style.backgroundColor = '#e78f8fbf';
+      break;
+    default:
+      welcoWrapper.style.backgroundColor = '#eeeeee';
+  }
+
+  // Construct the welcome message
+  const welcomeMessage = `Greetings, ${userDisplayName}! As <strong><em>Commander</em></strong> <strong>${commanderName} Firstblood</strong>, I'm thrilled to welcome you on our cosmic expedition! From the fiery depths of The Sun to the icy reaches of distant planets, we'll journey together and uncover the marvels of the universe! Let's embark on this stellar adventure, shall we? &#127776;&#128640;`;
+
+  // Display the welcome message
+  const welcomeMessageElement = document.querySelector('.welco .welcomeMessage');
+  welcomeMessageElement.innerHTML = welcomeMessage;
+
+  // Attach event listener to the close icon
+  const closeIconWM = document.querySelector('.close-iconWM');
+  closeIconWM.addEventListener('click', function () {
+    // Hide the welcome message
+    document.querySelector('.welco').style.display = 'none';
   });
 }
 
