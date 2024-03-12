@@ -3,6 +3,7 @@ let userInputName = '';
 function startExploring() {
   document.getElementById('root').style.display = 'none'; // Hide the landing page
   document.getElementById('landing-content').style.display = 'none'; // Hide the landing content
+  document.getElementById('canvas').style.display = 'block'; // Show starfield
   document.querySelector('.container').style.display = 'block'; // Show the celestial bodies
   document.querySelector('.astronaut').style.display = 'block'; // Show the astronaut
   document.querySelector('.spaceship').style.display = 'block'; // Show the spaceship
@@ -257,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Show message log overlay when user clicks start exploring
   function showOverlay() {
     messageLogOverlay.style.display = 'block';
+    document.querySelector('.container').style.overflow = 'hidden';
   }
 
   // Hide message log overlay when user clicks close button

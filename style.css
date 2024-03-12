@@ -1,11 +1,25 @@
 .landing-content {
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 50%;
+  width: fit-content;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
   z-index: 2;
+}
+
+.landing-page {
+  background-color: #000000;
+}
+
+.av-logo {
+  width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  text-align: center;
 }
 
 :root {
@@ -622,7 +636,7 @@ canvas {
   cursor: pointer;
   z-index: 1000;
   right: 20px;
-  top: calc(50% - 20%);
+  top: calc(50% - 194px);
 }
 
 .spaceship-message {
