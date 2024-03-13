@@ -805,3 +805,78 @@ canvas {
   -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
+
+.command-message {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000e0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #cba7d454;
+  box-shadow: 0 0 5px #e05ef1;
+  z-index: 999;
+  width: 300px;
+  /* Adjust width as needed */
+  text-align: center;
+}
+
+.command-message .commandMod {
+  margin-top: 5px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.command-message .systemComMod,
+.command-message .messageComMod {
+  text-align: center;
+}
+
+.command-message .fastTravelYes {
+  margin: 0 10px;
+  background-color: #ffffff8c;
+  color: #000;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-style: italic;
+  text-transform: uppercase;
+  right: -10%;
+  transform: translateX(-50%);
+}
+
+.command-message .fastTravelYes:hover {
+  background-color: #8fe7c6bf;
+  border: 1px solid #cba7d454;
+  color: #fff;
+}
+
+.command-message .fastTravelNo {
+  margin: 0 10px;
+  background-color: #ffffff8c;
+  color: #000;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-style: italic;
+  text-transform: uppercase;
+  right: -5%;
+  transform: translateX(-50%);
+}
+
+.command-message .fastTravelNo:hover {
+  background-color: #e78f93bf;
+  ;
+  border: 1px solid #cba7d454;
+  color: #fff;
+}

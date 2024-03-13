@@ -107,10 +107,18 @@
       camera-orbit="-54.64deg 69.19deg 60m" field-of-view="26.26deg" camera-controls disable-tap
       style="width: 300px; height: 300px;"></model-viewer>
   </div>
+  <div class="command-message" style="display: none;">
+    <p class="commandMod"></p>
+    <p class="systemComMod"></p>
+    <p class="messageComMod"></p>
+    <p>Fast Travel?</p>
+    <button class="fastTravelYes" onclick="scrollToNextBody()"><span class="material-icons">check_circle</span></button>
+    <button class="fastTravelNo" onclick="closeFastTravel()"><span class="material-icons">cancel</span></button>
+  </div>
   <div class="spaceship-message" style="display: none;">
     <p class="missionControl"></p>
     <p class="messageContent"></p>
-    <button class="closeButtonMC"></button>
+    <button class="closeButtonMC"><span class="material-icons">fast_forward</span></button>
   </div>
   <div class="welco" style="display: none;">
     <div class="welco-wrapper">

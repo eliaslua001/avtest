@@ -255,7 +255,7 @@ function showRandomSpaceshipMessage() {
   const userInput = document.getElementById('spaceshipName').value.trim();
   spaceshipData.name = userInput ? userInput : 'Odyssey';
 
-  const missionControl = `<span class="material-icons">settings_input_antenna</span>&nbsp&nbspHouston, ${spaceshipData.name}.&nbsp&nbsp<span class="material-icons">settings_input_antenna</span>`;
+  const missionControl = `<span class="material-icons">satellite_alt</span>&nbsp&nbspHouston, ${spaceshipData.name}.&nbsp&nbsp<span class="material-icons">satellite_alt</span>`;
   missionControlElement.innerHTML = missionControl;
   missionControlElement.classList.add('missionControl'); // Add the class for styling
   messageContentElement.textContent = randomSpaceshipMessage;
@@ -427,6 +427,8 @@ rightArrow.addEventListener('click', function () {
   modelViewer.currentRotation = currentRotation;
 });
 
+const celestialBodyPositions = [];
+
 celestialBodies.forEach(body => {
   const modelViewer = document.createElement('model-viewer');
   modelViewer.id = body.id;
@@ -454,6 +456,8 @@ celestialBodies.forEach(body => {
   const distance = (body.distance * astronomicalUnit) / scaleRatio;
   modelViewer.style.top = distance + 'px'; // Set the distance from the top
   document.querySelector('.container').appendChild(modelViewer);
+
+  celestialBodyPositions.push(distance); // Store the celestial body position
 
   // Create and append text element to display the name of the celestial body
   const nameElement = document.createElement('p');
@@ -497,9 +501,81 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// Function to auto-scroll to the next celestial body
+function scrollToNextBody() {
+  document.querySelector('.command-message').style.display = 'none';
+  const viewportHeight = window.innerHeight;
+  const currentPosition = window.scrollY;
+  let nextBodyIndex = celestialBodyPositions.findIndex(pos => pos > currentPosition);
+  if (nextBodyIndex === -1) {
+    // User is at the end, scroll to the last body
+    nextBodyIndex = celestialBodyPositions.length - 1;
+  }
+  // Find the corresponding planet element
+  const nextBodyElement = document.getElementById(celestialBodies[nextBodyIndex].id);
+  // Calculate the position to center the body vertically
+  const bodyTopPosition = nextBodyElement.getBoundingClientRect().top + window.scrollY;
+  const bodyHeight = nextBodyElement.offsetHeight;
+  const scrollToPosition = bodyTopPosition - (viewportHeight / 2) + (bodyHeight / 2);
+  // Scroll to the centered position of the celestial body
+  window.scrollTo({
+    top: scrollToPosition,
+    behavior: 'smooth'
+  });
+}
+
+function closeFastTravel() {
+  document.querySelector('.command-message').style.display = 'none';
+}
+
+function checkVisibilityAndUpdatePopup() {
+  // Initially hide the popup until we know a body has gone out of view
+  document.querySelector('.command-message').style.display = 'none';
+
+  let bodyVisible = false;
+  for (let i = 0; i < celestialBodies.length; i++) {
+    const body = celestialBodies[i];
+    const bodyElement = document.getElementById(body.id);
+    const rect = bodyElement.getBoundingClientRect();
+
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      // The body is currently visible
+      bodyVisible = true;
+      currentBodyIndex = i; // Update the currentBodyIndex to the last visible body
+      break;
+    }
+  }
+
+  // If the currently viewed body is not visible, show the popup for the next body
+  if (!bodyVisible && currentBodyIndex < celestialBodies.length - 1) {
+    const nextBody = celestialBodies[currentBodyIndex + 1];
+    showCommandMessage(nextBody);
+  }
+}
+
+function showCommandMessage(nextBody) {
+  const systemMessage = [
+    "Everything's looking good in the system.",
+    "No anomalies detected.",
+    "Navigation systems online and operational.",
+    "Smooth sailing ahead.",
+    "Enjoy the view of the cosmos!"
+  ][Math.floor(Math.random() * 5)];
+
+  const comModMsg = `<span class="material-icons">cell_tower</span>&nbsp;&nbsp;${spaceshipData.name}, ${userDisplayName}&nbsp;&nbsp;<span class="material-icons">cell_tower</span>`;
+  const destinationMessage = `Approaching ${nextBody.name} at ${(nextBody.distance * astronomicalUnit).toLocaleString()} km!`;
+
+  document.querySelector('.command-message').style.display = 'block';
+  document.querySelector('.commandMod').innerHTML = comModMsg;
+  document.querySelector('.systemComMod').textContent = systemMessage;
+  document.querySelector('.messageComMod').textContent = destinationMessage;
+}
+
 window.addEventListener('scroll', function () {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(function () {
+    checkVisibilityAndUpdatePopup();
+
     const scrollPosition = window.scrollY;
     const markerOffset = markerLine.getBoundingClientRect().top + window.scrollY - sunPosition;
     let distanceFromSunKm = (markerOffset > 0 ? markerOffset : 0) * scaleRatio + sunDistanceKm;
@@ -507,10 +583,10 @@ window.addEventListener('scroll', function () {
     if (markerOffset > celestialBodies[0].diameter / scaleRatio) {
       document.getElementById('distance').textContent = distanceFromSunKm.toLocaleString();
       document.querySelector('.distance-meter').style.display = 'block';
-      document.querySelector('.marker-line').style.display = 'block'; // Show the marker line
+      document.querySelector('.marker-line').style.display = 'block';
     } else {
       document.querySelector('.distance-meter').style.display = 'none';
-      document.querySelector('.marker-line').style.display = 'none'; // Hide the marker line
+      document.querySelector('.marker-line').style.display = 'none';
     }
-  }, 50); // Adjust the debounce delay as needed
+  }, 100); // Unified timeout function for both visibility check and distance update
 });
