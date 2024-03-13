@@ -123,6 +123,11 @@
   overflow: auto;
 }
 
+.message-log-text h2 {
+  text-align: center;
+  margin-block-start: 0.5em;
+}
+
 .close-messageLog {
   position: absolute;
   top: 10px;
@@ -143,7 +148,7 @@
   font-style: italic;
   font-size: smaller;
   margin-top: 10px;
-  text-align: justify;
+  text-align: center;
   display: inline-block;
   vertical-align: middle;
 }
