@@ -5,12 +5,14 @@
   width: fit-content;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-family: inherit;
   color: white;
   z-index: 2;
 }
 
 .landing-page {
   background-color: #000000;
+  font-family: inherit;
 }
 
 .av-logo {
@@ -20,6 +22,7 @@
 
 .wrapper {
   text-align: center;
+  font-family: inherit;
 }
 
 :root {
@@ -162,6 +165,8 @@ li {
 
 #userName {
   color: #ffffffe3;
+  font-family: 'Livvic', Verdana, sans-serif;
+  font-style: italic;
   display: inline-block;
   text-align: center;
   background-color: #929292d1;
@@ -186,10 +191,14 @@ li {
 
 #userName::placeholder {
   color: #ccc;
+  font-family: 'Livvic', Verdana, sans-serif;
+  font-style: italic;
 }
 
 #spaceshipName {
   color: #ffffffe3;
+  font-family: 'Livvic', Verdana, sans-serif;
+  font-style: italic;
   display: inline-block;
   text-align: center;
   background-color: #929292d1;
@@ -214,6 +223,8 @@ li {
 
 #spaceshipName::placeholder {
   color: #ccc;
+  font-family: 'Livvic', Verdana, sans-serif;
+  font-style: italic;
 }
 
 .placeholder {
@@ -304,8 +315,14 @@ button.active .shimmer::after {
   z-index: 2;
 }
 
+.custom-input {
+  font-family: 'Livvic', Verdana, sans-serif;
+}
+
 button .text {
   color: #ccc;
+  font-family: 'Livvic', Verdana, sans-serif;
+  font-style: bold;
   background-clip: text;
   background-color: var(--bg);
   background-image: linear-gradient(120deg, transparent, hsla(var(--glow-hue), 100%, 80%, 0.66) 40%, hsla(var(--glow-hue), 100%, 90%, .9) 50%, transparent 52%);
@@ -411,8 +428,18 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: Arial, sans-serif;
   overflow-y: scroll;
+  font-family: 'Livvic', Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  visibility: visible;
+  letter-spacing: 0.95px;
+  word-spacing: 0.45px;
+}
+
+body.font-loaded {
+  letter-spacing: 0px;
+  word-spacing: 0px
 }
 
 /* Starfield */
