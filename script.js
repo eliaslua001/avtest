@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const factContainer = document.querySelector('.fact-container');
 const factWrapper = factContainer.querySelector('.fact-wrapper');
-factWrapper.style.backgroundColor = 'rgba(120, 120, 120, 0.7)'; // Set the background color dynamically
+factWrapper.style.backgroundColor = '#787878B3';
 const classificationElement = factContainer.querySelector('.classification');
 const nameElement = factContainer.querySelector('.name');
 const categoryElement = factContainer.querySelector('.category');
