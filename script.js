@@ -96,7 +96,7 @@ const celestialBodies = [{
     poster: 'assets/sun.png',
     alt: 'Sun',
     category: 'G2 V, yellow dwarf main-sequence star',
-    color: 'yellow',
+    color: 'yellow', // True colour of the planet
     diameter: 1392700, // 1.3927 million kilometres
     distance: 0, // Starting point for this model
     name: 'Sun',
@@ -123,7 +123,7 @@ const celestialBodies = [{
     alt: 'Mercury',
     classification: 'Inner Planet',
     category: 'Terrestrial',
-    color: 'gray',
+    color: '#81817f', // True colour of the planet
     diameter: 4879, // 4,879 kilometres
     distance: 0.4, // AU Distance
     name: 'Mercury',
@@ -147,7 +147,7 @@ const celestialBodies = [{
     alt: 'Venus',
     classification: 'Inner Planet',
     category: 'Terrestrial',
-    color: 'orange',
+    color: '#f9deba', // True colour of the planet
     diameter: 12104, // 12,104 kilometers
     distance: 0.72, // AU Distance
     name: 'Venus',
@@ -173,7 +173,7 @@ const celestialBodies = [{
     alt: 'Earth',
     classification: 'Inner Planet',
     category: 'Terrestrial',
-    color: 'blue',
+    color: '#b0c4de', // True colour of the planet
     diameter: 12742, // 12,742 kilometres
     distance: 1, // AU Distance
     name: 'Earth',
@@ -196,7 +196,8 @@ const celestialBodies = [{
     src: 'assets/moon.glb',
     poster: 'assets/moon.png',
     alt: 'Moon',
-    color: 'gray',
+    category: 'Natural Satellite',
+    color: 'gray', // True colour of the planet
     diameter: 3475, // 3,475 kilometers
     distance: 1.00257, // 1 AU + 384,400 kilometres (0.00257 AU)
     name: 'Moon',
@@ -221,7 +222,7 @@ const celestialBodies = [{
     alt: 'Mars',
     classification: 'Inner Planet',
     category: 'Terrestrial',
-    color: 'red',
+    color: '#d69665', // True colour of the planet
     diameter: 6779, // 6,779 kilometers
     distance: 1.5, // AU Distance
     name: 'Mars',
@@ -248,7 +249,7 @@ const celestialBodies = [{
     alt: 'Jupiter',
     classification: 'Outer Planet',
     category: 'Gas Giant',
-    color: 'tan',
+    color: '#be9f6c', // True colour of the planet
     diameter: 142800, // 142,800 kilometres
     distance: 5.20, // AU Distance
     name: 'Jupiter',
@@ -273,7 +274,7 @@ const celestialBodies = [{
     alt: 'Saturn',
     classification: 'Outer Planet',
     category: 'Gas Giant',
-    color: 'gold',
+    color: '#ddb97b', // True colour of the planet
     width: 402536, // 120,536 kilometres, 402,536 kilometres including rings
     diameter: 120536,
     distance: 9.5, // AU Distance
@@ -304,7 +305,7 @@ const celestialBodies = [{
     alt: 'Uranus',
     classification: 'Outer Planet',
     category: 'Ice Giant',
-    color: 'lightblue',
+    color: '#cde5f4', // True colour of the planet
     diameter: 50724, // 50,724 kilometres
     distance: 19.8, // AU Distance
     name: 'Uranus',
@@ -330,7 +331,7 @@ const celestialBodies = [{
     alt: 'Neptune',
     classification: 'Outer Planet',
     category: 'Ice Giant',
-    color: 'blue',
+    color: '#a8c4d0', // True colour of the planet
     diameter: 49528, // 49,528 kilometers
     distance: 30, // AU Distance
     name: 'Neptune',
@@ -571,6 +572,7 @@ function showFact(index) {
     const factWrapper = factContainer.querySelector('.fact-wrapper');
     classificationElement.textContent = body.classification;
     nameElement.textContent = body.name;
+    nameElement.style.color = body.color;
     categoryElement.textContent = body.category;
 
     diameterElement.textContent = `Diameter: ${parseNumeriqueSpace(body.diameter)} km`;
