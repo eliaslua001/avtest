@@ -569,7 +569,9 @@ function showFact(index) {
     const facts = body.facts;
     const factContainer = document.querySelector('.fact-container');
     const factWrapper = factContainer.querySelector('.fact-wrapper');
+    classificationElement.textContent = body.classification;
     nameElement.textContent = body.name;
+    categoryElement.textContent = body.category;
 
     diameterElement.textContent = `Diameter: ${parseNumeriqueSpace(body.diameter)} km`;
     // Check if the current body is the Sun, then hide the distance
