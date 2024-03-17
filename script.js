@@ -113,7 +113,7 @@ const celestialBodies = [{
         'The part of the Sun that is commonly referred to as the "surface" is actually the photosphere, as the Sun doesn\'t have a solid surface!',
         'The photosphere is about 402 km thick.',
         'Sunspots are a key feature of the Sun, created when a portion of the Sun\'s magnetic field pokes out from within its interior.',
-        'Approximately every 11 years, the Sun\'s geographic poles change their magnetic polarity.'
+        'Approximately every 11 years, the Sun\'s geographic poles change their magnetic polarity.',
     ]
 },
 {
@@ -137,7 +137,7 @@ const celestialBodies = [{
         'Mercury\'s rotation is slower than its orbit: One Mercurian solar day equals 2 Mercurian years!',
         'With an axis tilt of just 2 degrees, Mercury does not experience seasons like other planets do.',
         'Mercury is the second densest planet in our Solar System; its metallic core comprises about 85% of the planet\'s radius!',
-        'Mercury\'s exosphere consists mostly of oxygen, sodium, hydrogen, helium, and potassium.'
+        'Mercury\'s exosphere consists mostly of oxygen, sodium, hydrogen, helium, and potassium.',
     ]
 },
 {
@@ -163,7 +163,7 @@ const celestialBodies = [{
         'Venus\' daytime temperature can reach as high as 475°C.',
         'One Venusian year is about 1.92 Venusian solar days: One Venusian day takes 243 Earth days, while one Venusian year takes 225 Earth days.',
         'Venus\' tilt axis is at a mere 3 degrees, resulting in minimal seasonal variations.',
-        'Although similar to Earth, Venus is an inferno where life as we know it could not exist.'
+        'Although similar to Earth, Venus is an inferno where life as we know it could not exist.',
     ]
 },
 {
@@ -178,17 +178,17 @@ const celestialBodies = [{
     distance: 1, // AU Distance
     name: 'Earth',
     facts: [
-        'The Moon is Earth\'s only natural satellite.',
-        'It is tidally locked to Earth, meaning the same side always faces Earth.',
-        'The Moon possibly formed after a collision with Earth billions of years ago.',
-        'The Moon is 384,400 km away from Earth and is slowly moving further away from us each year.',
-        'The Moon rotates at the same rate as it revolves around Earth, which is why the same side always faces us.',
-        'The Moon is made up of a core, mantle, and crust.',
-        'The Moon used to have active volcanoes but they have been dormant for millions of years.',
-        'The lighter areas on the Moon\'s surface are known as highlands, and the darker features are called maria (Latin for seas).',
-        'The brightest lunar crater is called Tycho Crater, with a diameter of 85 km and a depth of 4,700 m.',
-        'The gravity on the Moon is one-sixth that of Earth.',
-        'The surface temperature during the day reaches 127°C, while at night, the temperature plummets to -173°C.'
+      'Earth is the only planet that is not named after a god in ancient Greek/Roman mythology. Its name originates from Old English and Germanic roots.',
+      'Earth is the third planet from the Sun and the only astronomical object known to harbor life.',
+      'It has one natural satellite, the Moon, which plays a significant role in stabilising its axial tilt.',
+      'Earth is the only planet in our Solar System to have one moon.',
+      'Earth is made up of four layers, starting from the inner core follwoed by the outer core, mantle, and lastly the crust.',
+      'Earth\'s axis is tilted at 23.4° which causes our yearly seasons.',
+      'Earth\'s global oceans covers nearly 70% of the planet\'s surface and it contains 97% of Earth\'s water.',
+      'Most of Earth\'s volcanoes and mountain ranges are underwater.',
+      'Our surface contains 78% nitrogen, 21% oxygen, and 1% other gases such as argon, carbon dioxide, and neon.',
+      'Our atmosphere is one of the most important feature as it shields us from the radiation and solar storms from Sun. It also protects us from meteoroids.',
+      'Earth\'s polarity can change every 400,000 years or so, swapping the geological north and south point.',
     ]
 },
 {
@@ -209,9 +209,9 @@ const celestialBodies = [{
         'The Moon\'s is made up of a core, mantle, and a crust.',
         'The Moon used to have active volcanoes but are now dormat for millions of years.',
         'The lighter areas on The Moon\'s surface are known as highlands and the darker features are called maria (Latin for seas).',
-        'The brightest lunar crater is called Tycho Crater, with a diameter of 85km and having a depth of 4,700m. ',
+        'The brightest lunar crater is called Tycho Crater, with a diameter of 85km and having a depth of 4,700m.',
         'The gravity on The Moon is one-sixth that of Earth.',
-        'The surface temperature during the day is 127°C while at night, the temperature plumemt to -173°C. '
+        'The surface temperature during the day is 127°C while at night, the temperature plumemt to -173°C.',
     ]
 },
 {
@@ -238,7 +238,7 @@ const celestialBodies = [{
         'While Mars is about half the diameter of Earth, its surface area is nearly the same as Earth\'s dry land.',
         'Mars is home to the largest volcano in our Solar System, Olympus Mons. It is three times as tall as Earth\'s Mount Everest.',
         'Water exists on Mars\' surface as water ice in the polar regions.',
-        'Mars\' temperature can reach as high as 20°C and as low as -153°C. This is due to the thin Martian atmosphere, which allows heat from the Sun to escape easily.'
+        'Mars\' temperature can reach as high as 20°C and as low as -153°C. This is due to the thin Martian atmosphere, which allows heat from the Sun to escape easily.',
     ]
 },
 {
@@ -263,7 +263,7 @@ const celestialBodies = [{
         'Jupiter\'s rings are made up of small dark particles that can be seen when backlit by the Sun.',
         'Jupiter\'s composition is similar to that of the Sun (mostly hydrogen and helium).',
         'Jupiter does not have a solid surface as it is a Gas Giant.',
-        'With no solid surface, Jupiter\'s storms can persist for many years. One example is the iconic Great Red Spot, which has been raging for more than 300 years!'
+        'With no solid surface, Jupiter\'s storms can persist for many years. One example is the iconic Great Red Spot, which has been raging for more than 300 years!',
     ]
 },
 {
@@ -293,8 +293,8 @@ const celestialBodies = [{
         'The gravitational pull of Saturn is strong enough to cause significant tidal forces on its moons, leading to features such as geysers and ice volcanoes on some of them.',
         'Saturn has a complex magnetic field, which is tilted relative to its rotational axis and significantly weaker than Jupiter\'s magnetic field.',
         'The composition of Saturn\'s atmosphere includes hydrogen, helium, methane, and trace amounts of other gases.',
-        'Saturn is visible to the naked eye from Earth and has been observed by astronomers for centuries, dating back to ancient civilizations.',
-        'Saturn\'s rings are believed to be temporary and may disappear entirely in the distant future due to processes such as collisions and gravitational interactions with other objects.'
+        'Saturn is visible to the naked eye from Earth and has been observed by astronomers for centuries, dating back to ancient civilisations.',
+        'Saturn\'s rings are believed to be temporary and may disappear entirely in the distant future due to processes such as collisions and gravitational interactions with other objects.',
     ]
 },
 {
@@ -320,7 +320,7 @@ const celestialBodies = [{
         'Uranus has a weak magnetic field compared to other planets, and its magnetic axis is tilted relative to its rotational axis.',
         'The atmosphere of Uranus exhibits features such as clouds, winds, and occasional storms.',
         'Uranus has a faint planetary ring system discovered in 1977 during a stellar occultation.',
-        'The composition of Uranus\'s atmosphere gives rise to extremely cold temperatures, with surface temperatures reaching as low as -224 degrees Celsius.'
+        'The composition of Uranus\'s atmosphere gives rise to extremely cold temperatures, with surface temperatures reaching as low as -224°C.',
     ]
 },
 {
@@ -346,7 +346,7 @@ const celestialBodies = [{
         'It has a faint system of rings, which were first observed in 1984 by the Voyager 2 spacecraft.',
         'Neptune has a rocky core surrounded by a deep layer of water, ammonia, and methane ices.',
         'The pressure in Neptune\'s interior is so high that it compresses the methane in the atmosphere into diamond rain.',
-        'Neptune has a Great Dark Spot similar to Jupiter\'s Great Red Spot, but it has since disappeared and reappeared in different forms.'
+        'Neptune has a Great Dark Spot similar to Jupiter\'s Great Red Spot, but it has since disappeared and reappeared in different forms.',
     ]
 }
 ];
@@ -366,7 +366,7 @@ const spaceshipData = {
         "Attention! You're doing an astronomical job out there. Keep reaching for the stars!",
         "Howdy, here's a cosmic high-five for making space travel look so effortless!",
         "Space, the final frontier, and you're conquering it with style! Keep on soaring.",
-        "Just a quick transmission from Houston: You're out of this world! Keep on orbiting."
+        "Just a quick transmission from Houston: You're out of this world! Keep on orbiting.",
     ]
 };
 
@@ -486,7 +486,7 @@ const astronautData = {
         'There are more than 200 billion galaxies in the observable universe.',
         'A neutron star is so dense that a teaspoonful of its material would have a mass of about a billion tons.',
         'Saturn\'s rings are made up of billions of pieces of ice and rock, ranging in size from tiny grains to several meters across.',
-        'The Andromeda Galaxy is on a collision course with the Milky Way and is expected to collide with our galaxy in about 4 billion years.'
+        'The Andromeda Galaxy is on a collision course with the Milky Way and is expected to collide with our galaxy in about 4 billion years.',
     ]
 };
 
