@@ -571,7 +571,7 @@ function showFact(index) {
     const facts = body.facts;
     const factContainer = document.querySelector('.fact-container');
     const factWrapper = factContainer.querySelector('.fact-wrapper');
-    factWrapper.style.backgroundColor = body.color;
+    factContainer.style.borderColor = body.color;
     classificationElement.textContent = body.classification;
     nameElement.textContent = body.name;
     nameElement.style.color = body.color;
