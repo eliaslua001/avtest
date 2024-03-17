@@ -539,12 +539,10 @@ canvas {
 
 .fact-wrapper {
   padding: 15px;
-  /* Add padding on all sides */
   width: auto;
   height: auto;
   position: relative;
   border-radius: 10px;
-  /* Add border radius to round the corners */
   flex-direction: column;
   font-size: 15px;
   justify-content: space-evenly;

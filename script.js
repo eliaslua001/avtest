@@ -95,8 +95,9 @@ const celestialBodies = [{
     src: 'assets/sun.glb',
     poster: 'assets/sun.png',
     alt: 'Sun',
-    category: 'G2 V, yellow dwarf main-sequence star',
-    color: 'yellow', // True colour of the planet
+    classification: 'Star, Centre of the Solar System',
+    category: 'G2V, main-sequence star',
+    color: '#f8f8fa', // True colour of the planet
     diameter: 1392700, // 1.3927 million kilometres
     distance: 0, // Starting point for this model
     name: 'Sun',
@@ -123,7 +124,7 @@ const celestialBodies = [{
     alt: 'Mercury',
     classification: 'Inner Planet',
     category: 'Terrestrial',
-    color: '#81817f', // True colour of the planet
+    color: '#7c7676', // True colour of the planet
     diameter: 4879, // 4,879 kilometres
     distance: 0.4, // AU Distance
     name: 'Mercury',
@@ -147,7 +148,7 @@ const celestialBodies = [{
     alt: 'Venus',
     classification: 'Inner Planet',
     category: 'Terrestrial',
-    color: '#f9deba', // True colour of the planet
+    color: '#f4f4ea', // True colour of the planet
     diameter: 12104, // 12,104 kilometers
     distance: 0.72, // AU Distance
     name: 'Venus',
@@ -570,6 +571,7 @@ function showFact(index) {
     const facts = body.facts;
     const factContainer = document.querySelector('.fact-container');
     const factWrapper = factContainer.querySelector('.fact-wrapper');
+    factWrapper.style.backgroundColor = body.color;
     classificationElement.textContent = body.classification;
     nameElement.textContent = body.name;
     nameElement.style.color = body.color;
